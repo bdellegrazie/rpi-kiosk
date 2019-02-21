@@ -1,0 +1,6 @@
+---
+wireless_country_code: GB
+wireless_networks: {}
+wireless_service_manage: true
+wireless_service_enabled: true
+wireless_service_state: started

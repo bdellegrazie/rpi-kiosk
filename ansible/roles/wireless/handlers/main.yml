@@ -1,0 +1,7 @@
+---
+- name: wpa supplicant reload config
+  become: true
+  systemd:
+    name: wpa_supplicant.service
+    state: "{{ (wireless_service_state != 'stopped') | ternary('reloaded', 'stopped') }}"
+  when: wireless_service_manage | bool

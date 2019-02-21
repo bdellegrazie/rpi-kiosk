@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+country={{ wireless_country_code | upper }}
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+{% for item in wireless_networks|dictsort(true) %}
+network={
+  ssid="{{ item[0] }}"
+  psk="{{ item[1].psk }}"
+}
+{% endfor %}

@@ -1,0 +1,27 @@
+---
+- block:
+    - name: wireless support
+      become: true
+      package:
+        name: wpasupplicant
+        state: present
+
+    - name: wireless configuration
+      become: true
+      template:
+        src: wpa_supplicant.conf.j2
+        dest: /etc/wpa_supplicant/wpa_supplicant.conf
+        owner: root
+        group: root
+        mode: "u=rw,go="
+      notify:
+        - wpa supplicant reload config
+
+    - name: wireless daemon
+      become: true
+      systemd:
+        name: wpa_supplicant.service
+        enabled: "{{ wireless_service_enabled }}"
+        state: "{{ wireless_service_state }}"
+      when: wireless_service_manage | bool
+  when: (wireless_networks | length) > 0
