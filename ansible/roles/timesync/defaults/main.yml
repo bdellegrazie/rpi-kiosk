@@ -1,0 +1,16 @@
+---
+timesync_pool_zone: uk
+timesync_ntp:
+  - "0.{{ timesync_pool_zone }}.pool.ntp.org"
+  - "1.{{ timesync_pool_zone }}.pool.ntp.org"
+  - "2.{{ timesync_pool_zone }}.pool.ntp.org"
+  - "3.{{ timesync_pool_zone }}.pool.ntp.org"
+timesync_fallback_ntp:
+  - "0.pool.ntp.org"
+  - "1.pool.ntp.org"
+  - "2.pool.ntp.org"
+  - "3.pool.ntp.org"
+
+timesync_service_manage: true
+timesync_service_enabled: true
+timesync_service_state: started

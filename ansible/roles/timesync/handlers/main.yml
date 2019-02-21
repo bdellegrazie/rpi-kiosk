@@ -1,0 +1,9 @@
+---
+- name: Restart Timesyncd
+  become: true
+  systemd:
+    name: systemd-timesyncd.service
+    state: "{{ (timesync_service_state != 'stopped') | ternary( 'restarted', 'stopped') }}"
+  when:
+    - not ansible_check_mode
+    - timesync_service_manage | bool
