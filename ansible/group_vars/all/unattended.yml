@@ -1,0 +1,8 @@
+---
+unattended_automatic_reboot: true
+unattended_install_on_shutdown: true
+unattended_origins_patterns:
+  - 'origin=Debian,codename=${distro_codename},label=Debian-Security'
+  - 'o=Debian,a=stable'
+  - 'o=Debian,a=stable-updates'
+unattended_remove_unused_dependencies: true

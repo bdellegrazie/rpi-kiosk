@@ -1,0 +1,26 @@
+---
+- hosts: all
+  roles:
+    - role: debian
+      tags:
+        - debian
+    - role: wireless
+      tags:
+        - wireless
+    - role: keyboard
+      tags:
+        - keyboard
+    # Timesync will disable itself on virtualbox
+    - role: timesync
+      tags:
+        - timesync
+    - role: bdellegrazie.ca-certificates
+      tags:
+        - cacerts
+    - role: jnv.unattended-upgrades
+      become: true
+      tags:
+        - unattended
+    - role: kiosk
+      tags:
+        - dashboard

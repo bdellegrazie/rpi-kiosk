@@ -1,0 +1,4 @@
+---
+# timesync is unnecessary in vagrant with virtualbox correctly configured
+timesync_service_enabled: false
+timesync_service_state: stopped

@@ -1,0 +1,4 @@
+---
+git_config_system__giturl:
+  - name: 'url."https://".insteadOf'
+    value: 'git://'

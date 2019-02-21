@@ -18,8 +18,13 @@ ANSIBLE_TAGS ||= nil
 ANSIBLE_SKIP_TAGS ||= nil
 ANSIBLE_START_AT_TASK ||= nil
 ANSIBLE_GROUPS ||={}
+# Debian Stretch and higher have Python3 by default
 ansible_groups = {
   "vagrant" => ["default"],
+  "python3" => ["default"],
+  "python3:vars" => {
+     "ansible_python_interpreter" => "/usr/bin/python3"
+  }
 }
 ansible_groups.merge!(ANSIBLE_GROUPS)
 
@@ -55,14 +60,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Use vagrant's default insecure key
   config.ssh.insert_key = false
-
-  config.vm.provision "shell" do |s|
-    s.inline = "apt-get install --yes --no-install-recommends python-apt"
-    s.env = {
-      'DEBIAN_FRONTEND' => 'noninteractive',
-      'DEBIAN_PRIORITY' => 'critical'
-    }
-  end
 
   config.vm.provision "ansible" do |ansible|
    ansible.playbook = "ansible/site.yml"

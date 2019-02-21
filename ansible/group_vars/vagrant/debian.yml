@@ -1,0 +1,4 @@
+---
+debian_apt_unsafe_fast: true
+debian_apt_manage_sources: true
+debian_apt_squid_proxy_client: false
