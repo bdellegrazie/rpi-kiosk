@@ -1,0 +1,108 @@
+---
+- name: "Desktop: LightDM / LXDE"
+  become: true
+  apt:
+    name:
+      - fbset
+      - lightdm
+      - lightdm-gtk-greeter
+      - libpam-systemd
+      - lxde-core
+      - unclutter
+      - x11-xserver-utils
+      - xautomation
+      - xdotool
+      - xserver-xorg-core
+      - xserver-xorg-input-evdev
+      - xserver-xorg-input-mouse
+      - xserver-xorg-video-fbdev
+    state: present
+
+- name: "Desktop: video drivers (non-Pi)"
+  become: true
+  apt:
+    name:
+      - xserver-xorg-video-modesetting
+      - xserver-xorg-video-vesa
+    state: present
+  when: ansible_lsb.id != 'Raspbian'
+
+- name: "Desktop: video drivers (Raspberry Pi)"
+  become: true
+  apt:
+    name: xserver-xorg-video-fbturbo
+    state: present
+  when: ansible_lsb.id == 'Raspbian'
+
+- name: "Desktop: LightDM conf dir"
+  become: true
+  file:
+    group: root
+    mode: "u=rwx,go=rx"
+    owner: root
+    path: /etc/lightdm/lightdm.conf.d
+    state: directory
+
+- name: "Desktop: LightDM autologin config"
+  become: true
+  template:
+    dest: /etc/lightdm/lightdm.conf.d/autologin-kiosk.conf
+    group: root
+    mode: "u=rw,go=r"
+    owner: root
+    src: autologin-kiosk.conf.j2
+  notify: restart LightDM
+
+- name: "Desktop: Kiosk user config dir"
+  become: true
+  file:
+    group: "{{ kiosk_user }}"
+    mode: "u=rwx,go="
+    owner: "{{ kiosk_user }}"
+    path: "/home/{{ kiosk_user }}/.config"
+    state: directory
+
+- name: "Desktop: Kiosk lxsession config dir"
+  become: true
+  file:
+    group: "{{ kiosk_user }}"
+    mode: "u=rwx,go=rx"
+    owner: "{{ kiosk_user }}"
+    path: "/home/{{ kiosk_user }}/.config/lxsession"
+    state: directory
+
+- name: "Desktop: Kiosk LXDE config dir"
+  become: true
+  file:
+    group: "{{ kiosk_user }}"
+    mode: "u=rwx,go=rx"
+    owner: "{{ kiosk_user }}"
+    path: "/home/{{ kiosk_user }}/.config/lxsession/LXDE"
+    state: directory
+
+- name: "Desktop: Kiosk LXDE session config"
+  become: true
+  template:
+    dest: "/home/{{ kiosk_user }}/.config/lxsession/LXDE/autostart"
+    group: "{{ kiosk_user }}"
+    mode: "u=rw,go=r"
+    owner: "{{ kiosk_user }}"
+    src: autostart.j2
+  notify: restart LightDM
+
+- name: "Desktop: Kiosk xsessionrc"
+  become: true
+  template:
+    dest: "/home/{{ kiosk_user }}/.xsessionrc"
+    group: "{{ kiosk_user }}"
+    mode: "u=rw,go=r"
+    owner: "{{ kiosk_user }}"
+    src: xsessionrc.j2
+  notify: restart LightDM
+
+- name: "Desktop: LightDM Service Management"
+  become: true
+  service:
+    enabled: true
+    name: lightdm
+    state: started

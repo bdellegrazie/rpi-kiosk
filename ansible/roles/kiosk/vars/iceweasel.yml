@@ -1,0 +1,2 @@
+---
+kiosk_browser_command: "iceweasel -P kiosk --private-window {{ kiosk_url }}"

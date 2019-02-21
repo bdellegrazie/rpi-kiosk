@@ -1,0 +1,49 @@
+---
+- name: "Epiphany Browser (pin)"
+  become: true
+  copy:
+    dest: /etc/apt/preferences.d/epiphany-browser
+    group: root
+    mode: "u=rw,go=r"
+    owner: root
+    src: epiphany-browser.pin
+  when: ansible_lsb.id == 'Raspbian'
+
+- name: "Epiphany Browser: install"
+  become: true
+  apt:
+    name: epiphany-browser
+    state: present
+  notify: restart LightDM
+
+- name: "Epiphany Browser: Profile Dir"
+  become: true
+  file:
+    group: "{{ kiosk_user }}"
+    mode: "u=rwx,go="
+    owner: "{{ kiosk_user }}"
+    path: /home/{{ kiosk_user }}/.config/epiphany
+    state: directory
+  notify: restart LightDM
+
+- name: "Epiphany Browser: Helper scripts"
+  become: true
+  copy:
+    dest: /usr/local/bin/{{ item }}
+    group: root
+    mode: 'u=rwx,go=rx'
+    owner: root
+    src: "{{ item }}"
+  with_items:
+  - browser_fullscreen.sh
+
+- name: "Epiphany Browser: Auto Refresh"
+  become: true
+  cron:
+    cron_file: auto_refresh
+    hour: "{{ kiosk_display_refresh.hour }}"
+    job: /usr/local/bin/auto_refresh.sh
+    minute: "{{ kiosk_display_refresh.minute }}"
+    name: auto_refresh
+    user: "{{ kiosk_user }}"
+    weekday: "{{ kiosk_display_refresh.weekday }}"

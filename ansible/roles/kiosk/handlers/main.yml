@@ -1,0 +1,18 @@
+---
+- name: restart systemd-journald
+  become: true
+  systemd:
+    name: systemd-journald.service
+    state: restarted
+
+- name: restart kbd
+  become: true
+  systemd:
+    name: kbd
+    state: restarted
+
+- name: restart LightDM
+  become: true
+  systemd:
+    name: lightdm
+    state: restarted

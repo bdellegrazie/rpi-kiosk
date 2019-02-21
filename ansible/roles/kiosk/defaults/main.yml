@@ -1,0 +1,32 @@
+---
+kiosk_user: kiosk
+kiosk_url: https://www.google.co.uk/
+kiosk_environment: {}
+
+kiosk_kbd_blank_time: 0
+kiosk_kbd_blank_dpms: off
+kiosk_kbd_powerdown_time: 0
+
+kiosk_autostart_optional: []
+
+kiosk_browser: epiphany
+kiosk_browser_width: 1920
+kiosk_browser_height: 1080
+kiosk_browser_screen_x: 0
+kiosk_browser_screen_y: 0
+kiosk_browser_sizemode: fullscreen
+
+kiosk_display_off:
+  hour: 18
+  minute: 0
+  weekday: '1-5'
+
+kiosk_display_on:
+  hour: 7
+  minute: 0
+  weekday: '1-5'
+
+kiosk_display_refresh:
+  hour: '7-18'
+  minute: '0'
+  weekday: '1-5'

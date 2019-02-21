@@ -1,0 +1,52 @@
+[{{ ((ansible_distribution_major_version | int) >= 9) | ternary('SeatDefaults','Seat:0') }}]
+#type = Seat type (xlocal, xremote)
+#xdg-seat = Seat name to set pam_systemd XDG_SEAT variable and name to pass to X server
+#pam-service = PAM service to use for login
+#pam-autologin-service = PAM service to use for autologin
+#pam-greeter-service = PAM service to use for greeters
+#xserver-command = X server command to run (can also contain arguments e.g. X -special-option)
+#xserver-layout = Layout to pass to X server
+#xserver-config = Config file to pass to X server
+#xserver-allow-tcp = True if TCP/IP connections are allowed to this X server
+#xserver-share = True if the X server is shared for both greeter and session
+#xserver-hostname = Hostname of X server (only for type=xremote)
+#xserver-display-number = Display number of X server (only for type=xremote)
+#xdmcp-manager = XDMCP manager to connect to (implies xserver-allow-tcp=true)
+#xdmcp-port = XDMCP UDP/IP port to communicate on
+#xdmcp-key = Authentication key to use for XDM-AUTHENTICATION-1 (stored in keys.conf)
+#unity-compositor-command = Unity compositor command to run (can also contain arguments e.g. unity-system-compositor -special-option)
+#unity-compositor-timeout = Number of seconds to wait for compositor to start
+#greeter-session = Session to load for greeter
+greeter-hide-users=true
+greeter-allow-guest=false
+greeter-show-manual-login=false
+greeter-show-remote-login=false
+#user-session = Session to load for users
+allow-user-switching=false
+allow-guest=false
+#guest-session = Session to load for guests (overrides user-session)
+#session-wrapper = Wrapper script to run session with
+#greeter-wrapper = Wrapper script to run greeter with
+#guest-wrapper = Wrapper script to run guest sessions with
+#display-setup-script = Script to run when starting a greeter session (runs as root)
+#display-stopped-script = Script to run after stopping the display server (runs as root)
+#greeter-setup-script = Script to run when starting a greeter (runs as root)
+#session-setup-script = Script to run when starting a user session (runs as root)
+#session-cleanup-script = Script to run when quitting a user session (runs as root)
+autologin-guest=false
+autologin-user={{ kiosk_user }}
+autologin-user-timeout=0
+#autologin-session = Session to load for automatic login (overrides user-session)
+#autologin-in-background = True if autologin session should not be immediately activated
+#exit-on-failure = True if the daemon should exit if this seat fails
+
+[Seat:0]
+greeter-hide-users=true
+greeter-allow-guest=false
+greeter-show-manual-login=false
+greeter-show-remote-login=false
+allow-user-switching=false
+allow-guest=false
+autologin-guest=false
+autologin-user={{ kiosk_user }}
+autologin-user-timeout=0

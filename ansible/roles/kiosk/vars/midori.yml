@@ -1,0 +1,2 @@
+---
+kiosk_browser_command: "midori -p -e Fullscreen -a {{ kiosk_url }}"

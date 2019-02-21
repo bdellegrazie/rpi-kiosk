@@ -1,0 +1,17 @@
+---
+- name: Kiosk group
+  become: true
+  group:
+    name: "{{ kiosk_user }}"
+    state: present
+
+- name: Kiosk user
+  become: true
+  user:
+    comment: "Kiosk User"
+    createhome: true
+    group: "{{ kiosk_user }}"
+    home: /home/{{ kiosk_user }}
+    name: "{{ kiosk_user }}"
+    shell: /bin/bash
+    state: present

@@ -1,0 +1,6 @@
+---
+- name: "Midori: install"
+  become: true
+  apt:
+    name: midori
+    state: present

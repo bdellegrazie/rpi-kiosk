@@ -1,0 +1,60 @@
+---
+- name: "Iceweasel: install"
+  become: true
+  apt:
+    name: iceweasel-l10n-en-gb
+    state: present
+
+- name: "Iceweasel Profile: Directory"
+  become: true
+  file:
+    group: "{{ kiosk_user }}"
+    mode: "u=rwx,go="
+    owner: "{{ kiosk_user }}"
+    path: /home/{{ kiosk_user }}/.mozilla/firefox/kiosk
+    state: directory
+    recurse: true
+  notify: restart LightDM
+
+- name: "Iceweasel Profile: Created?"
+  become: true
+  stat:
+    path: /home/{{ kiosk_user }}/.mozilla/firefox/kiosk/prefs.js
+  register: iceweasel_profile
+
+- name: "Iceweasel Profile: Create"
+  become: true
+  become_user: "{{ kiosk_user }}"
+  command: /usr/bin/rsync -qrlt /usr/share/iceweasel/browser/defaults/profile/ /home/{{ kiosk_user }}/.mozilla/firefox/kiosk/
+  when: not iceweasel_profile.stat.exists
+  notify: restart LightDM
+
+- name: "Iceweasel Profile: Manager Configuration"
+  become: true
+  template:
+    dest: /home/{{ kiosk_user }}/.mozilla/firefox/profiles.ini
+    group: "{{ kiosk_user }}"
+    mode: "u=rw,go=r"
+    owner: "{{ kiosk_user }}"
+    src: firefox.profiles.ini.j2
+  notify: restart LightDM
+
+- name: "Iceweasel Profile: Customize"
+  become: true
+  template:
+    dest: /home/{{ kiosk_user }}/.mozilla/firefox/kiosk/user.js
+    group: "{{ kiosk_user }}"
+    mode: "u=rw,g=r,o="
+    owner: "{{ kiosk_user }}"
+    src: firefox.user.js.j2
+  notify: restart LightDM
+
+- name: "Iceweasel Profile: Window Size"
+  become: true
+  template:
+    dest: /home/{{ kiosk_user }}/.mozilla/firefox/kiosk/xulstore.json
+    group: "{{ kiosk_user }}"
+    mode: "u=rw,g=r,o="
+    owner: "{{ kiosk_user }}"
+    src: firefox.xulstore.json.j2
+  notify: restart LightDM

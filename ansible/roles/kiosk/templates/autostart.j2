@@ -1,0 +1,8 @@
+@xset s off
+@xset -dpms
+@xset s noblank
+@{{ kiosk_browser_command }}
+{% for ITEM in kiosk_autostart_optional %}
+{{ ITEM }}
+{% endfor %}
+@unclutter

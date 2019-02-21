@@ -1,0 +1,6 @@
+{% if kiosk_environment %}
+{% for KEY,VALUE in kiosk_environment | dictsort %}
+{{ KEY }}={{ VALUE }}
+{% endfor %}
+export{% for KEY in kiosk_environment.keys() | sort %} {{ KEY }}{% endfor %}
+{% endif %}

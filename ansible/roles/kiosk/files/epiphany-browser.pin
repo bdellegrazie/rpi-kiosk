@@ -1,0 +1,8 @@
+# Prefer Raspian's version of Epiphany compared to the archive (archive is a lot older)
+Package: epiphany-browser
+Pin: release o=Raspbian
+Pin-priority: 1001
+
+Package: epiphany-browser-data
+Pin: release o=Raspbian
+Pin-priority: 1001

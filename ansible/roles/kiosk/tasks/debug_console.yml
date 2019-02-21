@@ -1,0 +1,20 @@
+---
+- name: Enable systemd output to console
+  become: true
+  ini_file:
+    dest: /etc/systemd/journald.conf
+    section: Journal
+    option: ForwardToConsole
+    value: yes
+  notify:
+    - restart systemd-journald
+
+- name: Set console output to VT12
+  become: true
+  ini_file:
+    dest: /etc/systemd/journald.conf
+    section: Journal
+    option: TTYPath
+    value: /dev/tty12
+  notify:
+    - restart systemd-journald

@@ -1,0 +1,13 @@
+---
+- include: kiosk.yml
+- name: "Kiosk: Browser Specific Vars"
+  include_vars: "{{ kiosk_browser }}.yml"
+- include: kbd.yml
+- include: desktop.yml
+
+- include: "{{ kiosk_browser }}.yml"
+  when: kiosk_browser in [ 'epiphany', 'firefox', 'iceweasel', 'midori' ]
+
+- include: browser_refresh.yml
+- include: blanking.yml
+- include: debug_console.yml
