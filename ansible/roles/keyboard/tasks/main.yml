@@ -1,0 +1,11 @@
+---
+- name: Configure Keyboard (Debian)
+  become: true
+  template:
+    dest: /etc/default/keyboard
+    group: root
+    mode: 'u=rw,go=r'
+    owner: root
+    src: keyboard.default.j2
+  when: ansible_os_family == 'Debian'
+  notify: restart keyboard service
