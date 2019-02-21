@@ -1,0 +1,48 @@
+# General
+*~
+*.bak
+*.log
+
+# Thumbnails
+Thumbs.db
+
+# Object files (no binaries in git repos!)
+*.obj
+*.exe
+*.so
+*.zip
+*.tar
+*.gz
+
+# Mac
+.fseventsd/
+.Spotlight-V100/
+.Trashes/
+._.Trashes
+
+# Eclipse
+.classpath
+.compatibility
+.project
+.pydevproject
+.factorypath
+.checkstyle
+.metadata/
+.settings/
+.pmd
+.springBeans
+.tern-project
+.venv/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Vagrant
+.vagrant/
+
+# Ansible
+settings.rb
+ansible/galaxy_roles/
+*.retry
+.vault

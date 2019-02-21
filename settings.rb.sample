@@ -1,0 +1,12 @@
+# VM CPUs
+#VM_CPUS=2
+
+# VM Memory
+#VM_MEMORY=2048
+
+# Ansible variables - for format see: https://www.vagrantup.com/docs/provisioning/ansible_common.html
+#ANSIBLE_TAGS=[]
+#ANSIBLE_SKIP_TAGS
+#ANSIBLE_GROUPS={
+#}
+#ANSIBLE_VERBOSE="v"

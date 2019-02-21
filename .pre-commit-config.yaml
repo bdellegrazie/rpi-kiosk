@@ -1,0 +1,25 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v2.1.0
+    hooks:
+    -   id: trailing-whitespace
+        files: \.(js|rb|md|py|sh|txt|yaml|yml)$
+    -   id: check-yaml
+        files: \.(yaml|yml)$
+    -   id: check-merge-conflict
+        files: \.(js|rb|md|py|sh|txt|yaml|yml)$
+    -   id: check-symlinks
+-   repo: https://github.com/ansible/ansible-lint.git
+    rev: v4.1.0
+    hooks:
+    -   id: ansible-lint
+        files: \.(yaml|yml)$
+-   repo: local
+    hooks:
+    -   id: vagrant-validate
+        name: vagrant validate
+        entry: vagrant
+        files: '^Vagrantfile$'
+        language: system
+        pass_filename: false
+        args: [ 'validate' ]

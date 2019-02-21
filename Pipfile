@@ -1,0 +1,14 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+ansible-lint = "*"
+pre-commit = "*"
+yamllint = "*"
+
+[packages]
+ansible = "==2.7.7"
+passlib = "*"
+six = "*"

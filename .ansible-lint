@@ -1,0 +1,8 @@
+---
+exclude_paths:
+  - .travis.yml
+  - ansible/requirements.yml
+  - ansible/galaxy_roles
+  - test
+skip_list:
+  - '204'
