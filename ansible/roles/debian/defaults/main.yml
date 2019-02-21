@@ -1,0 +1,6 @@
+---
+debian_apt_install_recommends: true
+debian_apt_install_suggests: false
+debian_apt_squid_proxy_client: false
+debian_apt_manage_sources: false
+debian_apt_unsafe_fast: false

@@ -1,0 +1,85 @@
+---
+- block:
+    - name: include distribution specific vars
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "{{ ansible_distribution | lower ~ '-' ~ ansible_distribution_major_version ~ '.yml' }}"
+        - "{{ ansible_distribution | lower ~ '-default.yml' }}"
+    
+    - name: set install policy for APT
+      become: true
+      template:
+        dest: /etc/apt/apt.conf.d/99install
+        group: root
+        mode: "u=rw,go=r"
+        owner: root
+        src: apt-install-policy.j2
+    
+    - name: unsafe optimisation for APT/DPKG (dpkg config)
+      become: true
+      copy:
+        dest: /etc/dpkg/dpkg.cfg.d/unsafe-io
+        group: root
+        mode: 'u=rw,go=r'
+        owner: root
+        src: dpkg-unsafe-io
+      when: debian_apt_unsafe_fast | bool
+    
+    - name: squid-deb-proxy-client
+      become: true
+      apt:
+        name: squid-deb-proxy-client
+        state: present
+      when: debian_apt_squid_proxy_client | bool
+    
+    - name: unsafe optimisation for APT/DPKG (eatmydata install)
+      become: true
+      apt:
+        name: eatmydata
+        state: present
+      when: debian_apt_unsafe_fast | bool
+    
+    - name: unsafe optimisation for APT/DPKG (apt/dpkg symlinks)
+      become: true
+      file:
+        group: root
+        mode: 'ugo=rwx'
+        owner: root
+        path: "{{ item.path }}"
+        src: "{{ item.src }}"
+        state: link
+      when: debian_apt_unsafe_fast | bool
+      with_items:
+        - {path: /usr/local/bin/apt-get, src: /usr/bin/eatmydata}
+        - {path: /usr/local/bin/dpkg, src: /usr/bin/eatmydata}
+        - {path: /usr/local/bin/aptitude, src: /usr/bin/eatmydata}
+    
+    - name: unsafe optimisation for APT/DPKG (apt config)
+      become: true
+      template:
+        dest: /etc/apt/apt.conf.d/99eatmydata
+        group: root
+        mode: 'u=rw,go=r'
+        owner: root
+        src: apt-eatmydata.j2
+      when: debian_apt_unsafe_fast | bool
+    
+    - name: remove distribution sources.list
+      become: true
+      file:
+        path: /etc/apt/sources.list
+        state: absent
+      when: debian_apt_manage_sources | bool
+    
+    - name: base repositories
+      become: true
+      apt_repository:
+        repo: "{{ item[1] }} {{ item[0].repo }} {{ item[0].path }} {{ item[0].components | default(['main', 'contrib', 'non-free']) | join(' ') }}"
+        state: present
+        update_cache: false
+      with_nested:
+        - "{{ debian_repos | list }}"
+        - ['deb', 'deb-src']
+      when: debian_apt_manage_sources | bool
+
+  when: ansible_distribution == 'Debian'

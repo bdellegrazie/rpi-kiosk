@@ -1,0 +1,10 @@
+---
+debian_repos:
+  - repo: http://deb.debian.org/debian
+    path: '{{ ansible_distribution_release }}'
+  - repo: http://deb.debian.org/debian-security
+    path: '{{ ansible_distribution_release }}/updates'
+  - repo: http://deb.debian.org/debian
+    path: '{{ ansible_distribution_release }}-backports'
+
+debian_backports_enable: true
