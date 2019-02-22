@@ -5,7 +5,7 @@ Useful for a build monitor or wallboard display.
 
 ## Features
 
-* Selectable Browser (Epiphany, Firefox, Iceweasel)
+* Selectable Browser (Epiphany, Firefox, Midori)
 * Configurable refresh of the browser (every 5 minutes by default)
 * Configurable on/off times for the display (default 0700-1800)
 * Configurable full screen display size (default 1920x1080)
