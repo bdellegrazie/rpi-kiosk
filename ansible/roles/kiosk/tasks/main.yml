@@ -6,7 +6,7 @@
 - include: desktop.yml
 
 - include: "{{ kiosk_browser }}.yml"
-  when: kiosk_browser in [ 'epiphany', 'firefox', 'midori' ]
+  when: kiosk_browser in ['chromium', 'epiphany', 'firefox', 'midori']
 
 - include: browser_refresh.yml
 - include: blanking.yml

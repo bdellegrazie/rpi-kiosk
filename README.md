@@ -5,7 +5,7 @@ Useful for a build monitor or wallboard display.
 
 ## Features
 
-* Selectable Browser (Epiphany, Firefox, Midori)
+* Selectable Browser (Chromium, Epiphany, Firefox, Midori)
 * Configurable refresh of the browser (every 5 minutes by default)
 * Configurable on/off times for the display (default 0700-1800)
 * Configurable full screen display size (default 1920x1080)
@@ -52,7 +52,7 @@ Modify group\_vars as needed. Each role has its own defaults, the following are 
 | `timesync_ntp` | NTP servers | 0, 1, 2, 3 of the specific NTP pool zone, disabled on Vagrant |
 | `kiosk_url` | URL to use for the Kiosk | `https://www.google.co.uk/` |
 | `kiosk_environment` | Dictionary of environment variables set when running the browser, useful for proxy configuration | `{}` |
-| `kiosk_browser` | Browser to use, one of epiphany, firefox or iceweasel | `epiphany` |
+| `kiosk_browser` | Browser to use, one of chromium, epiphany, firefox or midori | `epiphany` |
 
 Extra settings and their defaults can be seen in `ansible/roles/kiosk/defaults/main.yml`
 

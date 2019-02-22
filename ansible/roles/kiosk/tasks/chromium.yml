@@ -1,0 +1,7 @@
+---
+- name: "Chromium: Install"
+  become: true
+  apt:
+    name: chromium
+    state: present
+  notify: restart LightDM
