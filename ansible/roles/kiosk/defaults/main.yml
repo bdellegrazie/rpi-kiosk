@@ -1,6 +1,8 @@
 ---
 kiosk_user: kiosk
-kiosk_url: https://www.google.co.uk/
+kiosk_urls:
+  - https://www.google.co.uk/
+  - https://github.com/bdellegrazie/rpi-dashboard/
 kiosk_environment: {}
 
 kiosk_kbd_blank_time: 0
@@ -15,6 +17,14 @@ kiosk_browser_height: 1080
 kiosk_browser_screen_x: 0
 kiosk_browser_screen_y: 0
 kiosk_browser_sizemode: fullscreen
+
+# Sequence of xte keys to switch tabs
+kiosk_browser_tab_switch_keys:
+  - 'keydown Control_L'
+  - 'keydown Page_Down'
+  - 'usleep 200'
+  - 'keyup Page_Down'
+  - 'keyup Control_L'
 
 kiosk_display_off:
   hour: 18

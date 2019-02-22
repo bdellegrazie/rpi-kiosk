@@ -10,6 +10,17 @@
   with_items:
     - browser_refresh.sh
 
+- name: "Browser: Helper scripts (templated)"
+  become: true
+  template:
+    dest: /usr/local/bin/{{ item | regex_replace('\.j2$','') }}
+    group: root
+    mode: 'u=rwx,go=rx'
+    owner: root
+    src: "{{ item }}"
+  with_items:
+    - browser_tab_switch.sh.j2
+
 - name: "Browser: Auto Refresh"
   become: true
   cron:
