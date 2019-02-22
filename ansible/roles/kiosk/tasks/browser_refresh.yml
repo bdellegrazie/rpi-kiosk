@@ -8,7 +8,7 @@
     owner: root
     src: "{{ item }}"
   with_items:
-  - browser_refresh.sh
+    - browser_refresh.sh
 
 - name: "Browser: Auto Refresh"
   become: true
@@ -20,4 +20,3 @@
     name: browser_refresh
     user: "{{ kiosk_user }}"
     weekday: "{{ kiosk_display_refresh.weekday }}"
-

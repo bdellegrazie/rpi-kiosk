@@ -4,7 +4,7 @@ kiosk_url: https://www.google.co.uk/
 kiosk_environment: {}
 
 kiosk_kbd_blank_time: 0
-kiosk_kbd_blank_dpms: off
+kiosk_kbd_blank_dpms: 'off'
 kiosk_kbd_powerdown_time: 0
 
 kiosk_autostart_optional: []

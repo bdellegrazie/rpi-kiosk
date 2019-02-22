@@ -5,7 +5,7 @@
     dest: /etc/systemd/journald.conf
     section: Journal
     option: ForwardToConsole
-    value: yes
+    value: 'yes'
   notify:
     - restart systemd-journald
 

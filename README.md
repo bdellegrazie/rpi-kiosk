@@ -3,6 +3,8 @@
 Configures, using Ansible, a Raspberry Pi with a locked down desktop and browser to point at a single dashboard URL.
 Useful for a build monitor or wallboard display.
 
+[![Build Status](https://travis-ci.org/bdellegrazie/rpi-dashboard.svg?branch=master)](https://travis-ci.org/bdellegrazie/rpi-dashboard)
+
 ## Features
 
 * Selectable Browser (Chromium, Epiphany, Firefox, Midori)
@@ -35,7 +37,7 @@ It is easier to setup the Pi on a wired connection.
 Wifi is possible but you need to:
 1. Manually configure the Wifi
 2. Update the inventory to use the correct IP / host as needed
-3. Run Ansible as above 
+3. Run Ansible as above
 
 ## Settings
 
@@ -74,7 +76,7 @@ If the Pi has no other function than this repo can be used to restore a Pi from 
 as possible.
 
 The safety measures can be disabled by setting `debian_apt_unsafe_fast: true` in the Pi's group\_vars or host\_vars. They are disabled on vagrant by default
- 
+
 
 ## Contributing / Testing with Vagrant
 

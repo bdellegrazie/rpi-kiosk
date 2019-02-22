@@ -35,7 +35,7 @@
     owner: root
     src: "{{ item }}"
   with_items:
-  - browser_fullscreen.sh
+    - browser_fullscreen.sh
 
 - name: "Epiphany Browser: Auto Refresh"
   become: true

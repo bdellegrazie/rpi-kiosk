@@ -1,0 +1,26 @@
+---
+dist: xenial
+sudo: false
+
+language: python
+python:
+  - "3.6"
+
+cache: pip
+
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log
+
+before_install:
+  - pip install pipenv
+
+install:
+  - pipenv install --dev
+
+# Pre-commit needs to skip vagrant-validate as its not installed
+env:
+  - SKIP=vagrant-validate
+
+script:
+  # Run tests
+  - pipenv run pre-commit run --all-files
