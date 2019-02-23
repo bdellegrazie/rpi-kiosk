@@ -1,5 +1,6 @@
 ---
 kiosk_user: kiosk
+kiosk_user_home: /home/{{ kiosk_user }}
 kiosk_urls:
   - https://www.google.co.uk/
   - https://github.com/bdellegrazie/rpi-dashboard/

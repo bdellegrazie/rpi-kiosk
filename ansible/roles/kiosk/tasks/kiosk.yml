@@ -11,7 +11,7 @@
     comment: "Kiosk User"
     createhome: true
     group: "{{ kiosk_user }}"
-    home: /home/{{ kiosk_user }}
+    home: "{{ kiosk_user_home }}"
     name: "{{ kiosk_user }}"
     shell: /bin/bash
     state: present
