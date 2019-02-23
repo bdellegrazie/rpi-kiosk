@@ -1,8 +1,5 @@
-@xset s off
-@xset -dpms
-@xset s noblank
+/usr/local/bin/systemd-user-graphical-login.sh
 @{{ kiosk_browser_command }}
 {% for ITEM in kiosk_autostart_optional %}
 {{ ITEM }}
 {% endfor %}
-@unclutter

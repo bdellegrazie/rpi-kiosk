@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Browser Tab Switch Timer
+PartOf=graphical-session.target
+
+[Timer]
+AccuracySec=1
+{% for ITEM in kiosk_browser_tab_switch_calendar %}
+OnCalendar={{ ITEM }}
+{% endfor %}
+
+[Install]
+WantedBy=user-graphical-login.target

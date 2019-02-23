@@ -41,3 +41,6 @@ kiosk_display_refresh:
   hour: '7-18'
   minute: '0'
   weekday: '1-5'
+
+kiosk_browser_tab_switch_calendar:
+  - "Mon..Fri *-*-* 08..18:*:00/15"

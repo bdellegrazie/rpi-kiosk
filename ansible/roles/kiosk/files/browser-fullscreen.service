@@ -1,0 +1,7 @@
+[Unit]
+Description=Browser Fullscreen
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xte -x $DISPLAY 'key F11'

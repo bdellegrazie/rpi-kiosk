@@ -77,6 +77,11 @@ going as fast as possible, however if the process breaks, the Pi may need to be 
 
 The safety measures can be disabled by setting `debian_apt_unsafe_fast: true` in the Pi's group\_vars or host\_vars. This behaviour is switched on (true) in vagrant by default
 
+### Systemd Notes
+
+Systemd timers are used to schedule the page switch so the resolution can be specified in seconds
+Systemd has support for integration with the graphical user session (see systemd.special(7), target graphical-session.target) but this integration is not implemented
+by any of the session managers yet. Instead a work-around described here is used: https://naftuli.wtf/2017/12/28/systemd-user-environment/
 
 ## Contributing / Testing with Vagrant
 

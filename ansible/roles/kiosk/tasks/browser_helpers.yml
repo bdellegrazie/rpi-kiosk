@@ -8,26 +8,58 @@
     owner: root
     src: "{{ item }}"
   with_items:
-    - browser_refresh.sh
+    - systemd-user-graphical-login.sh
 
-- name: "Browser: Helper scripts (templated)"
+- name: Systemd Kiosk User Services Directory
+  become: true
+  file:
+    path: "{{ kiosk_user_home }}/.config/systemd/user"
+    mode: "u=rwx,go="
+    owner: "{{ kiosk_user }}"
+    group: "{{ kiosk_user }}"
+    state: directory
+
+- name: Systemd Kiosk User Task Files
+  become: true
+  copy:
+    dest: "{{ kiosk_user_home }}/.config/systemd/user/{{ item }}"
+    group: "{{ kiosk_user }}"
+    owner: "{{ kiosk_user }}"
+    mode: "u=rw,go="
+    src: "{{ item }}"
+  loop:
+    - browser-fullscreen.service
+    - browser-fullscreen.timer
+    - user-graphical-login.target
+  notify:
+    - restart LightDM
+
+- name: Systemd Kiosk User Task Files
   become: true
   template:
-    dest: /usr/local/bin/{{ item | regex_replace('\.j2$','') }}
-    group: root
-    mode: 'u=rwx,go=rx'
-    owner: root
+    dest: "{{ kiosk_user_home }}/.config/systemd/user/{{ item | regex_replace('\\.user\\.j2','') }}"
+    group: "{{ kiosk_user }}"
+    owner: "{{ kiosk_user }}"
+    mode: "u=rw,go="
     src: "{{ item }}"
-  with_items:
-    - browser_tab_switch.sh.j2
+  loop:
+    - browser-tab-switch.timer.user.j2
+    - browser-tab-switch.service.user.j2
+    - disable-screensaver.service.user.j2
+  notify:
+    - restart LightDM
 
-- name: "Browser: Auto Refresh"
+- name: Systemd Kiosk User Tasks
   become: true
-  cron:
-    cron_file: browser_refresh
-    hour: "{{ kiosk_display_refresh.hour }}"
-    job: /usr/local/bin/browser_refresh.sh
-    minute: "{{ kiosk_display_refresh.minute }}"
-    name: browser_refresh
-    user: "{{ kiosk_user }}"
-    weekday: "{{ kiosk_display_refresh.weekday }}"
+  become_user: "{{ kiosk_user }}"
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "{{ item }}"
+    scope: user
+  loop:
+    - browser-fullscreen.timer
+    - browser-tab-switch.timer
+    - disable-screensaver.service
+  notify:
+    - restart LightDM

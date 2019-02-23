@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Browser Tab Switch Task
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xte -x $DISPLAY '{{ kiosk_browser_tab_switch_keys | join("' '") }}'
