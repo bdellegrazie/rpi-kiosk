@@ -52,7 +52,7 @@ Modify group\_vars as needed. Each role has its own defaults, the following are 
 | `keyboard_layout` | Country layout for keyboard (vagrant only) | `gb` |
 | `timesync_pool_zone` | Country code for the NTP pool zone to use | `uk` |
 | `timesync_ntp` | NTP servers | 0, 1, 2, 3 of the specific NTP pool zone, disabled on Vagrant |
-| `kiosk_url` | URL to use for the Kiosk | `https://www.google.co.uk/` |
+| `kiosk_urls` | List of URL to use for the Kiosk | `https://www.google.co.uk/`, `https://github.com/bdellegrazie/rpi-dashboard/' |
 | `kiosk_environment` | Dictionary of environment variables set when running the browser, useful for proxy configuration | `{}` |
 | `kiosk_browser` | Browser to use, one of chromium, epiphany, firefox or midori | `epiphany` |
 
