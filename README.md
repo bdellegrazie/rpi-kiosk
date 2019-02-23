@@ -3,7 +3,7 @@
 Configures, using Ansible, a Raspberry Pi with a locked down desktop and browser to point at a single dashboard URL.
 Useful for a build monitor or wallboard display.
 
-[![Build Status](https://travis-ci.org/bdellegrazie/rpi-dashboard.svg?branch=master)](https://travis-ci.org/bdellegrazie/rpi-dashboard)
+[![Build Status](https://travis-ci.org/bdellegrazie/rpi-kiosk.svg?branch=master)](https://travis-ci.org/bdellegrazie/rpi-kiosk)
 
 ## Features
 
