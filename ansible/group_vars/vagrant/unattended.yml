@@ -1,0 +1,5 @@
+---
+unattended_origins_patterns:
+  - 'origin=Debian,codename=${distro_codename},label=Debian-Security'
+  - 'o=Debian,a=stable'
+  - 'o=Debian,a=stable-updates'

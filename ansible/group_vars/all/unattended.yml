@@ -1,8 +1,7 @@
 ---
 unattended_automatic_reboot: true
-unattended_install_on_shutdown: true
+unattended_install_on_shutdown: false
 unattended_origins_patterns:
-  - 'origin=Debian,codename=${distro_codename},label=Debian-Security'
-  - 'o=Debian,a=stable'
-  - 'o=Debian,a=stable-updates'
+  - 'origin=Raspbian,codename=${distro_codename},label=Raspbian'
+  - 'origin=Raspberry Pi Foundation,codename=${distro_codename},label=Raspberry Pi Foundation'
 unattended_remove_unused_dependencies: true
