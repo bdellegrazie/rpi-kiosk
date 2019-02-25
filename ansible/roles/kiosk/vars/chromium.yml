@@ -1,2 +1,2 @@
 ---
-kiosk_browser_command: "chromium-browser --window-size={{ kiosk_browser_width ~ ',' ~ kiosk_browser_height }} --start-fullscreen --kiosk --incognito --noerrdialogs --disable-translate --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/dev/null {{ kiosk_url }}"
+kiosk_browser_command: "chromium-browser --window-size={{ kiosk_browser_width ~ ',' ~ kiosk_browser_height }} --start-fullscreen --kiosk --incognito --noerrdialogs --disable-translate --no-first-run --fast --fast-start --disable-infobars --disable-features=TranslateUI --disk-cache-dir=/dev/null {{ kiosk_urls | join(' ') }}"

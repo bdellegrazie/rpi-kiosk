@@ -8,6 +8,6 @@
 - include: "{{ kiosk_browser }}.yml"
   when: kiosk_browser in ['chromium', 'epiphany', 'firefox', 'midori']
 
-- include: browser_refresh.yml
+- include: browser_helpers.yml
 - include: blanking.yml
 - include: debug_console.yml

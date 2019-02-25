@@ -1,6 +1,9 @@
 ---
 kiosk_user: kiosk
-kiosk_url: https://www.google.co.uk/
+kiosk_user_home: /home/{{ kiosk_user }}
+kiosk_urls:
+  - https://www.google.co.uk/
+  - https://github.com/bdellegrazie/rpi-dashboard/
 kiosk_environment: {}
 
 kiosk_kbd_blank_time: 0
@@ -16,6 +19,14 @@ kiosk_browser_screen_x: 0
 kiosk_browser_screen_y: 0
 kiosk_browser_sizemode: fullscreen
 
+# Sequence of xte keys to switch tabs
+kiosk_browser_tab_switch_keys:
+  - 'keydown Control_L'
+  - 'keydown Page_Down'
+  - 'usleep 200'
+  - 'keyup Page_Down'
+  - 'keyup Control_L'
+
 kiosk_display_off:
   hour: 18
   minute: 0
@@ -30,3 +41,6 @@ kiosk_display_refresh:
   hour: '7-18'
   minute: '0'
   weekday: '1-5'
+
+kiosk_browser_tab_switch_calendar:
+  - "Mon..Fri *-*-* 08..18:*:00/15"

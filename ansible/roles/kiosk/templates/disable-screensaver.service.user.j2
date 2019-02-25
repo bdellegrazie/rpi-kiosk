@@ -1,0 +1,13 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Disable Screen Saver
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xset -display $DISPLAY -dpms s noblank s off
+
+[Install]
+# Necessary until graphical-session.target is bound to lxession
+WantedBy=user-graphical-login.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Browser Fullscren Timer
+PartOf=graphical-session.target
+
+[Timer]
+AccuracySec=1
+OnActiveSec=10
+
+[Install]
+WantedBy=user-graphical-login.target
