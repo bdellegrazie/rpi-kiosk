@@ -1,6 +1,6 @@
 # Kiosk / Dashboard for Raspberry Pi
 
-Configures, using Ansible, a Raspberry Pi with a locked down desktop and browser to point at a single dashboard URL.
+Configures, using Ansible, a Raspberry Pi with a locked down desktop and browser to rotate through multiple URLs.
 Useful for a build monitor or wallboard display.
 
 [![Build Status](https://travis-ci.org/bdellegrazie/rpi-kiosk.svg?branch=master)](https://travis-ci.org/bdellegrazie/rpi-kiosk)
@@ -36,8 +36,9 @@ ansible-playbook -i ansible/inventory ansible/site.yml
 It is easier to setup the Pi on a wired connection.
 Wifi is possible but you need to:
 1. Manually configure the Wifi
-2. Update the inventory to use the correct IP / host as needed
-3. Run Ansible as above
+2. Install openssh-server on the Pi
+3. Update the inventory to use the correct IP / host as needed
+4. Run Ansible as above
 
 ## Settings
 
