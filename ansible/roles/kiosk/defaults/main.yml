@@ -27,16 +27,6 @@ kiosk_browser_tab_switch_keys:
   - 'keyup Page_Down'
   - 'keyup Control_L'
 
-kiosk_display_off:
-  hour: 18
-  minute: 0
-  weekday: '1-5'
-
-kiosk_display_on:
-  hour: 7
-  minute: 0
-  weekday: '1-5'
-
 kiosk_display_refresh:
   hour: '7-18'
   minute: '0'
