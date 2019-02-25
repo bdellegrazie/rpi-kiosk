@@ -91,3 +91,8 @@ by any of the session managers yet. Instead a work-around described here is used
 3. Run `vagrant up`
 
 Not all roles will execute on Vagrant (timesync is skipped)
+
+## Similar Projects
+
+[Screenly OSE](https://github.com/Screenly/screenly-ose/) - supports local content / video too and has a web console for configuration. There is a professional
+version that has cloud storage for configuration etc.
