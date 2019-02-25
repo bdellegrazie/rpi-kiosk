@@ -72,10 +72,10 @@ If desired, this value could be encrypted using Ansible Vault
 
 Apt, the package manager for Raspberry Pi's Raspbian is extremely slow and heavy on I/O due to safety measures to ensure the reliability and recovery of the package database.
 
-If the Pi has no other function than this repo can be used to restore a Pi from nothing so its becomes worth disabling APT's safety checks and simply going as fast
-as possible.
+If the Pi has no other manual customisations, then this repo can be used to restore a Pi from nothing so its becomes worth disabling APT's safety checks and simply
+going as fast as possible, however if the process breaks, the Pi may need to be formatted and re-initialised to bring it back to working state
 
-The safety measures can be disabled by setting `debian_apt_unsafe_fast: true` in the Pi's group\_vars or host\_vars. They are disabled on vagrant by default
+The safety measures can be disabled by setting `debian_apt_unsafe_fast: true` in the Pi's group\_vars or host\_vars. This behaviour is switched on (true) in vagrant by default
 
 
 ## Contributing / Testing with Vagrant

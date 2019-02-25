@@ -1,0 +1,4 @@
+---
+# Uncomment the line below to speed up apt package management on the Pi - note that if the install breaks, you might have to reformat the SD card
+# and restart the process from the beginning
+#debian_apt_unsafe_fast: true
