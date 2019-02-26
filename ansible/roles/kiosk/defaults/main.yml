@@ -12,6 +12,15 @@ kiosk_kbd_powerdown_time: 0
 
 kiosk_autostart_optional: []
 
+kiosk_display_off_manage: false
+kiosk_display_off_cmd: "/usr/bin/vcgencmd display_power 0"
+kiosk_display_off_calendar:
+  - "Mon..Fri *-*-* 18:00:00"
+kiosk_display_on_manage: false
+kiosk_display_on_cmd: "/usr/bin/vcgencmd display_power 1"
+kiosk_display_on_calendar:
+  - "Mon..Fri *-*-* 08:00:00"
+
 kiosk_browser: epiphany
 kiosk_browser_width: 1920
 kiosk_browser_height: 1080

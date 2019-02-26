@@ -1,0 +1,31 @@
+---
+# Based on https://support.screenly.io/hc/en-us/articles/115000898806-Can-I-set-the-screen-to-turn-on-off-automatically-
+- name: Systemd Task Files
+  become: true
+  template:
+    dest: "/etc/systemd/system/{{ item | regex_replace('\\.j2','') }}"
+    group: root
+    owner: root
+    mode: "u=rw,go=r"
+    src: "{{ item }}"
+  loop:
+    - display_off.service.j2
+    - display_off.timer.j2
+    - display_on.service.j2
+    - display_on.timer.j2
+
+- name: Systemd Task Display Off
+  become: true
+  systemd:
+    daemon_reload: true
+    enabled: "{{ kiosk_display_off_manage | bool }}"
+    name: "display_off.timer"
+    state: "{{ (kiosk_display_off_manage | bool) | ternary('started','stopped') }}"
+
+- name: Systemd Task Display On
+  become: true
+  systemd:
+    daemon_reload: true
+    enabled: "{{ kiosk_display_on_manage | bool }}"
+    name: "display_on.timer"
+    state: "{{ (kiosk_display_on_manage | bool) | ternary('started','stopped') }}"

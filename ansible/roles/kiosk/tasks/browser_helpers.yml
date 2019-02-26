@@ -1,4 +1,6 @@
 ---
+# Based on https://naftuli.wtf/2017/12/28/systemd-user-environment/
+# until support for systemd session management is added to LXDE (i.e. systemd controls the instatiation of lxsession)
 - name: "Browser: Helper scripts"
   become: true
   copy:

@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Display On Service
+PartOf=graphical-session.target
+ConditionlArchitecture=arm
+
+[Service]
+Type=oneshot
+ExecStart={{ kiosk_display_on_cmd }}

@@ -9,4 +9,5 @@
   when: kiosk_browser in ['chromium', 'epiphany', 'firefox', 'midori']
 
 - include: browser_helpers.yml
+- include: display.yml
 - include: debug_console.yml

@@ -1,0 +1,15 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Display On Timer
+PartOf=graphical-session.target
+ConditionArchitecture=arm
+
+[Timer]
+AccuracySec=1min
+{% for ITEM in kiosk_display_on_calendar %}
+OnCalendar={{ ITEM }}
+{% endfor %}
+
+[Install]
+WantedBy=user-graphical-login.target

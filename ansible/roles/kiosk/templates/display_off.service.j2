@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Display Off Service
+PartOf=graphical-session.target
+ConditionArchitecture=arm
+
+[Service]
+Type=oneshot
+ExecStart={{ kiosk_display_off_cmd }}
