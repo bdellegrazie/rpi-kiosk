@@ -28,6 +28,10 @@ kiosk_browser_screen_x: 0
 kiosk_browser_screen_y: 0
 kiosk_browser_sizemode: fullscreen
 
+kiosk_browser_chrome_packages:
+  - chromium
+kiosk_browser_chrome_bin: /usr/bin/chromium
+
 # Sequence of xte keys to switch tabs
 kiosk_browser_tab_switch_keys:
   - 'keydown Control_L'
@@ -36,10 +40,15 @@ kiosk_browser_tab_switch_keys:
   - 'keyup Page_Down'
   - 'keyup Control_L'
 
-kiosk_display_refresh:
-  hour: '7-18'
-  minute: '0'
-  weekday: '1-5'
+kiosk_browser_refresh_keys:
+  - 'key F5'
 
 kiosk_browser_tab_switch_calendar:
   - "Mon..Fri *-*-* 08..18:*:00/15"
+
+kiosk_browser_refresh_on_calendar:
+  - "Mon..Fri *-*-* 08..18:00/5:00"
+
+# on time + (#sites * delay per sec)
+kiosk_browser_refresh_off_calendar:
+  - "Mon..Fri *-*-* 08..18:00/5:30"

@@ -2,6 +2,6 @@
 - name: "Chromium: Install"
   become: true
   apt:
-    name: chromium-browser
+    name: "{{ kiosk_browser_chrome_packages }}"
     state: present
   notify: restart LightDM

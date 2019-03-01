@@ -1,0 +1,12 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Browser Refresh
+PartOf=graphical-session.target
+Requires=browser-tab-switch.service
+After=browser-tab-switch.service
+ConditionPathExists=$HOME/.browser-refresh
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xte -x $DISPLAY '{{ kiosk_browser_refresh_keys | join("' '") }}'

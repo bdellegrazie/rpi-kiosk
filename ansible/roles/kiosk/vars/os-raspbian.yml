@@ -1,0 +1,5 @@
+---
+# In Raspbian, Chromium is called chromium-browser
+kiosk_browser_chrome_packages:
+  - chromium-browser
+kiosk_browser_chrome_bin: /usr/bin/chromium-browser

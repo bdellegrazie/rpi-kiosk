@@ -1,4 +1,14 @@
 ---
+- name: Load Distro Specific Variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - os-{{ ansible_distribution | lower }}-{{ ansible_distribution_version }}.yml"
+        - os-{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.yml
+        - family-{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version }}.yml
+        - family-{{ ansible_os_family | lower }}.yml
+      skip: true
+
 - include: kiosk.yml
 - name: "Kiosk: Browser Specific Vars"
   include_vars: "{{ kiosk_browser }}.yml"

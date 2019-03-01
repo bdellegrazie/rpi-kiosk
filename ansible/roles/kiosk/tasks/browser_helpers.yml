@@ -45,6 +45,11 @@
     mode: "u=rw,go="
     src: "{{ item }}"
   loop:
+    - browser-refresh-off.timer.user.j2
+    - browser-refresh-off.service.user.j2
+    - browser-refresh.service.user.j2
+    - browser-refresh-on.timer.user.j2
+    - browser-refresh-on.service.user.j2
     - browser-tab-switch.timer.user.j2
     - browser-tab-switch.service.user.j2
     - disable-screensaver.service.user.j2
@@ -61,6 +66,8 @@
     scope: user
   loop:
     - browser-fullscreen.timer
+    - browser-refresh-off.timer
+    - browser-refresh-on.timer
     - browser-tab-switch.timer
     - disable-screensaver.service
   notify:
