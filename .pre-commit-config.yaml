@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v2.1.0
+    rev: v2.3.0
     hooks:
       - id: trailing-whitespace
         files: \.(js|rb|md|py|sh|txt|yaml|yml)$
@@ -11,7 +11,7 @@ repos:
         files: \.(js|rb|md|py|sh|txt|yaml|yml)$
       - id: check-symlinks
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.15.0
+    rev: v1.17.0
     hooks:
       - id: yamllint
   - repo: https://github.com/ansible/ansible-lint.git

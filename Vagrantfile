@@ -40,22 +40,35 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
 
-  config.vagrant.plugins = "vagrant-vbguest"
+  config.vm.provider "libvirt" do |v, override|
+    v.cpus = VM_CPUS
+    v.memory = VM_MEMORY
+    v.graphics_type = "spice"
+    v.keymap = "en-gb"
+    v.video_type = "qxl"
+    v.video_vram = 9216
+    v.random :model => 'random'
+    v.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
+    v.channel :type => 'spicevmc', :target_name => 'com.redhat.spice.0', :target_type => 'virtio'
+  end
 
   # VirtualBox specific stuff
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |v, override|
+    override.vm.box = "debian/contrib-stretch64"
+    override.vagrant.plugins = "vagrant-vbguest"
+
     # Display the VirtualBox GUI when booting the machine
-    vb.gui = true
+    v.gui = true
 
-    vb.cpus   = VM_CPUS
-    vb.memory = VM_MEMORY
+    v.cpus   = VM_CPUS
+    v.memory = VM_MEMORY
 
-    vb.customize ["modifyvm", :id, "--vram", VM_VRAM]
-    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
-    vb.customize ["storageattach", :id, "--storagectl", "SATA Controller", "--device", "0", "--port", "0", "--nonrotational", "on", "--discard", "on"]
+    v.customize ["modifyvm", :id, "--vram", VM_VRAM]
+    v.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    v.customize ["storageattach", :id, "--storagectl", "SATA Controller", "--device", "0", "--port", "0", "--nonrotational", "on", "--discard", "on"]
     # timesync equivalent to 2.5 minutes in ms)
-    vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", "150000"]
+    v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", "150000"]
   end
 
   # Use vagrant's default insecure key
