@@ -1,4 +1,11 @@
 ---
+- name: Console Setup Packgages
+  become: true
+  apt:
+    name: "{{ keyboard_packages }}"
+    state: present
+  notify: restart keyboard service
+
 - name: Configure Keyboard (Debian)
   become: true
   template:

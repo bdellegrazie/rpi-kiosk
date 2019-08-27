@@ -1,4 +1,6 @@
 ---
+keyboard_packages:
+  - console-setup-linux
 keyboard_model: pc105
 keyboard_layout: gb
 keyboard_variant:
