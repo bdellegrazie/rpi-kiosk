@@ -34,7 +34,7 @@ ANSIBLE_VERBOSE ||= false
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # https://docs.vagrantup.com.
 
-  config.vm.box = "debian/stretch64"
+  config.vm.box = "debian/buster64"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -55,7 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # VirtualBox specific stuff
   config.vm.provider "virtualbox" do |v, override|
-    override.vm.box = "debian/contrib-stretch64"
+    override.vm.box = "debian/contrib-buster64"
     override.vagrant.plugins = "vagrant-vbguest"
 
     # Display the VirtualBox GUI when booting the machine
