@@ -3,6 +3,8 @@ extends: default
 ignore: |
   .pre-commit-config.yaml
   .travis.yml
+  /.venv/
+  /ansible/galaxy_roles/
 
 rules:
   braces:
