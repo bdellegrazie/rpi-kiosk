@@ -76,7 +76,7 @@
       apt_repository:
         repo: "{{ item[1] }} {{ item[0].repo }} {{ item[0].path }} {{ item[0].components | default(['main', 'contrib', 'non-free']) | join(' ') }}"
         state: present
-        update_cache: false
+        update_cache: true
       with_nested:
         - "{{ debian_repos | list }}"
         - ['deb', 'deb-src']
