@@ -5,10 +5,9 @@ verify_ssl = true
 
 [dev-packages]
 ansible-lint = "*"
-pre-commit = "*"
 yamllint = "*"
 
 [packages]
-ansible = "==2.8.4"
+ansible = "==2.9.4"
 passlib = "*"
 six = "*"
