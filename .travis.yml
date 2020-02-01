@@ -1,10 +1,10 @@
 ---
-dist: xenial
+dist: bionic
 sudo: false
 
 language: python
 python:
-  - "3.6"
+  - "3.7"
 
 cache: pip
 
@@ -12,7 +12,8 @@ before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
 
 before_install:
-  - pip install pipenv
+  - pip3 install pre-commit
+  - pip3 install pipenv
 
 install:
   - pipenv install --dev
@@ -23,4 +24,4 @@ env:
 
 script:
   # Run tests
-  - pipenv run pre-commit run --all-files
+  - pre-commit run --all-files
