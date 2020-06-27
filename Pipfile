@@ -8,6 +8,6 @@ ansible-lint = "*"
 yamllint = "*"
 
 [packages]
-ansible = "==2.9.4"
+ansible = "==2.9.9"
 passlib = "*"
 six = "*"

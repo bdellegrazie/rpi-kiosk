@@ -32,6 +32,7 @@ Thumbs.db
 .pmd
 .springBeans
 .tern-project
+.direnv/
 .venv/
 
 # IntelliJ

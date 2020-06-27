@@ -14,7 +14,7 @@
     - role: timesync
       tags:
         - timesync
-    - role: bdellegrazie.ca-certificates
+    - role: bdellegrazie.ca_certificates
       tags:
         - cacerts
     - role: jnv.unattended-upgrades
