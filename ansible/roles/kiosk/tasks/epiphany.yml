@@ -25,25 +25,3 @@
     path: /home/{{ kiosk_user }}/.config/epiphany
     state: directory
   notify: restart LightDM
-
-- name: "Epiphany Browser: Helper scripts"
-  become: true
-  copy:
-    dest: /usr/local/bin/{{ item }}
-    group: root
-    mode: 'u=rwx,go=rx'
-    owner: root
-    src: "{{ item }}"
-  with_items:
-    - browser_fullscreen.sh
-
-- name: "Epiphany Browser: Auto Refresh"
-  become: true
-  cron:
-    cron_file: auto_refresh
-    hour: "{{ kiosk_display_refresh.hour }}"
-    job: /usr/local/bin/auto_refresh.sh
-    minute: "{{ kiosk_display_refresh.minute }}"
-    name: auto_refresh
-    user: "{{ kiosk_user }}"
-    weekday: "{{ kiosk_display_refresh.weekday }}"

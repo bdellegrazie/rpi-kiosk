@@ -1,4 +1,2 @@
 ---
 kiosk_browser_command: "epiphany-browser --profile=/home/{{ kiosk_user }}/.config/epiphany {{ ((ansible_distribution_major_version | int) < 9) | ternary('-a', '--netbank-mode') }} {{ kiosk_urls | join(' ') }}"
-kiosk_autostart_optional:
-  - "@/usr/local/bin/browser_fullscreen.sh"
