@@ -1,5 +1,5 @@
 ---
 - name: 'bdellegrazie.ca_certificates'
-  version: 'v3.1.1'
+  version: 'v3.1.2'
 - name: 'jnv.unattended-upgrades'
-  version: 'v1.8.0'
+  version: 'v1.11.0'
